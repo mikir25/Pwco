@@ -1,3 +1,9 @@
 <p>display-movie works!</p>
 
+<input type="number" id="movie_id" [(ngModel)]="id" />
 <button (click)="get()">Get</button>
+<a *ngFor="let movie of movies"> <br>id: {{movie.id}} <br>title: {{movie.title}}</a>
+
+
+
+

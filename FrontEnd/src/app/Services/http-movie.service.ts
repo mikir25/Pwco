@@ -15,6 +15,11 @@ export class HttpMovieService {
 
   getAllMovies(): Observable<Movie[]>
   {
-    return this.http.get<Movie[]>(this.url + 'api/movie').pipe(tap(console.log));
+    return this.http.get<Movie[]>(this.url + 'api/movie');
+  }
+
+  getMovie(id: number): Observable<Movie>
+  {
+    return this.http.get<Movie>(this.url + `api/movie/${id}`)
   }
 }
