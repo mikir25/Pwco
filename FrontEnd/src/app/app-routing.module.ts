@@ -7,6 +7,7 @@ const  routes: Routes = [
   { path: '', redirectTo: '/movies', pathMatch: 'full' },
   { path: 'movies', component: DisplayMovieComponent },
   { path: 'movies/form', component: FormMovieComponent },
+  { path: 'movies/form/:id', component: FormMovieComponent },
   { path: '**', redirectTo: '/movies' }
 ];
 

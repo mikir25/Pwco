@@ -33,4 +33,9 @@ export class HttpMovieService {
     return this.http.post(this.url, movie);
   }
 
+  putMovie(movie: Movie)
+  {
+    return this.http.put(this.url + `/${movie.id}`, movie);
+  }
+
 }

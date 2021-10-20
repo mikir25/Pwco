@@ -17,11 +17,7 @@ export class DisplayMovieComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   public id: number | null = null;
-
-  result = new BehaviorSubject<Movie[]>([]);
-  subject = new Subject<Movie[]>();
 
   get()
   {
@@ -49,12 +45,17 @@ export class DisplayMovieComponent implements OnInit {
 
   }
 
-  delete(id: number | undefined)
+  delete(id: number | undefined, i: number)
   {
     if(id != undefined)
     {
       this.http.deleteMovie(id).subscribe(
-        () => this.movies = [],
+        () => {
+          this.http.getAllMovies().subscribe(
+          (data: Movie[]) => {
+            this.movies = data;
+          }
+        )} ,
         error => {console.log(error)},
         () => console.log('Compleat delete!')
       );
