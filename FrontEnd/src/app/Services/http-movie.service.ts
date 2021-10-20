@@ -9,17 +9,28 @@ import {tap} from "rxjs/operators";
 })
 export class HttpMovieService {
 
-  private url = 'http://localhost:5001/';
+  private url = 'http://localhost:5001/api/movie';
 
   constructor(private http: HttpClient) { }
 
   getAllMovies(): Observable<Movie[]>
   {
-    return this.http.get<Movie[]>(this.url + 'api/movie');
+    return this.http.get<Movie[]>(this.url);
   }
 
   getMovie(id: number): Observable<Movie>
   {
-    return this.http.get<Movie>(this.url + `api/movie/${id}`)
+    return this.http.get<Movie>(this.url + `/${id}`)
   }
+
+  deleteMovie(id: number): Observable<{}>
+  {
+    return this.http.delete<{}>(this.url + `/${id}`)
+  }
+
+  postMovie(movie: Movie)
+  {
+    return this.http.post(this.url, movie);
+  }
+
 }

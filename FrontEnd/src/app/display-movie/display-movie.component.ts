@@ -33,7 +33,7 @@ export class DisplayMovieComponent implements OnInit {
           this.movies = data;
         },
         error => {console.log(error)},
-        () => console.log('Compleat!')
+        () => console.log('Compleat getAll!')
       );
     }
     else if(this.id != null){
@@ -43,11 +43,24 @@ export class DisplayMovieComponent implements OnInit {
           this.movies.push(data);
         },
         error => {console.log(error)},
-        () => console.log('Compleat!')
+        () => console.log('Compleat getId!')
       );
     }
 
   }
 
-  //<a *ngFor="let movie of result">id:</a>
+  delete(id: number | undefined)
+  {
+    if(id != undefined)
+    {
+      this.http.deleteMovie(id).subscribe(
+        () => this.movies = [],
+        error => {console.log(error)},
+        () => console.log('Compleat delete!')
+      );
+    }
+
+
+  }
+
 }

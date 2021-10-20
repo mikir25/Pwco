@@ -1,8 +1,23 @@
 <p>display-movie works!</p>
 
-<input type="number" id="movie_id" [(ngModel)]="id" />
+ID:<input type="number" id="movie_id" [(ngModel)]="id" />
 <button (click)="get()">Get</button>
-<a *ngFor="let movie of movies"> <br>id: {{movie.id}} <br>title: {{movie.title}}</a>
+
+
+<div *ngFor="let movie of movies">
+  <a>id: {{movie.id}} </a>
+  <a>title: {{movie.title}} </a>
+  <a>type: {{movie.type}} </a>
+  <a>director: {{movie.director}} </a>
+  <a>duration: {{movie.duration}} </a>
+  <a>rating: {{movie.rating}} </a>
+  <a>description: {{movie.description}} </a>
+  <a>actors: {{movie.actors}} </a>
+  <a>dateAdded: {{movie.dateAdded}} </a>
+
+  <button (click)="delete(movie.id)">Delete</button>
+
+</div>
 
 
 

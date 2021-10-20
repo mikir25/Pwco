@@ -1,1 +1,14 @@
 <p>form-movie works!</p>
+
+<form (ngSubmit)="createMovie()">
+  <a>title:<input name="title" [(ngModel)]="movie.title" type="text"/></a>
+  <a>type:<input name="type"  [(ngModel)]="movie.type" type="text"/></a>
+  <a>director:<input name="director"  [(ngModel)]="movie.director" type="text"/></a>
+  <a>duration:<input name="duration"  [(ngModel)]="movie.duration" type="number"/></a>
+  <a>rating:<input name="rating"  [(ngModel)]="movie.rating" type="number"/></a>
+  <a>description:<input name="description"  [(ngModel)]="movie.description" type="text"/></a>
+  <a>actors:<input name="actors"  [(ngModel)]="movie.actors" type="text"/></a>
+  <a>dateAdded:<input name="dateAdded"  [(ngModel)]="movie.dateAdded" type="text"/></a>
+
+  <button type="submit">Wyślij</button>
+</form>

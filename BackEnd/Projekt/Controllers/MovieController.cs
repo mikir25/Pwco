@@ -33,7 +33,7 @@ namespace Projekt.Controllers
 
             if (movie is null)
             {
-                return null;
+                return NotFound();
             }
 
             return Ok(movie);

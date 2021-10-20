@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Movie} from "../Models/movie";
+import {HttpMovieService} from "../Services/http-movie.service";
 
 @Component({
   selector: 'app-form-movie',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormMovieComponent implements OnInit {
 
-  constructor() { }
+  constructor(private http: HttpMovieService) { }
 
+  movie: Movie = new Movie();
   ngOnInit(): void {
   }
 
+  createMovie()
+  {
+    this.http.postMovie(this.movie).subscribe(
+      () => {},
+      error => {console.log(error)},
+      () => console.log('Compleat post!')
+    );
+  }
 }
