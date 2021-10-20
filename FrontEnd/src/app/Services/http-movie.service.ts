@@ -1,15 +1,20 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {config, Observable} from "rxjs";
 import {Movie} from "../Models/movie";
+import { environment } from '../../environments/environment';
 import {tap} from "rxjs/operators";
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpMovieService {
 
-  private url = 'http://localhost:5001/api/movie';
+  private url = environment.API_URL;
+  //zawsze, gdy używasz do produkcji, użyj opcji polecenia kątowego cli
+  //ng build --env=prod
+
 
   constructor(private http: HttpClient) { }
 
@@ -36,6 +41,6 @@ export class HttpMovieService {
   putMovie(movie: Movie)
   {
     return this.http.put(this.url + `/${movie.id}`, movie);
-  }
 
+  }
 }

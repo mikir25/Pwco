@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,8 +26,9 @@ namespace Projekt
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var test = Configuration.GetConnectionString("MovieDbConnection");
             services.AddControllersWithViews();
-            services.AddDbContext<MovieDbContext>();
+
             services.AddScoped<MovieSeeder>();
             services.AddAutoMapper(this.GetType().Assembly);
             services.AddSwaggerGen();
@@ -36,10 +38,14 @@ namespace Projekt
                 options.AddPolicy("FrontEndClient", builder =>
                 builder.AllowAnyMethod()
                 .AllowAnyHeader()
-                .WithOrigins("http://localhost:4200")
+                .WithOrigins(Configuration.GetConnectionString("URLFrontEnd"))
                 );
             });
-            
+            services.AddDbContext<MovieDbContext>
+                (opctions =>
+                {
+                    opctions.UseSqlServer(Configuration.GetConnectionString("MovieDbConnection"));
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
