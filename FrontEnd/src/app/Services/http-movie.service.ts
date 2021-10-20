@@ -12,9 +12,6 @@ import {tap} from "rxjs/operators";
 export class HttpMovieService {
 
   private url = environment.API_URL;
-  //zawsze, gdy używasz do produkcji, użyj opcji polecenia kątowego cli
-  //ng build --env=prod
-
 
   constructor(private http: HttpClient) { }
 
